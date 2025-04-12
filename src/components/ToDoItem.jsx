@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
-function toDoItem ( {item} ) {
+function ToDoItem ( { item } ) {
+	const [isCompleted, setIsCompleted] = useState(false);
+	const onClickList = () => {
+		setIsCompleted((prev) => !prev);
+	}
     return (
-        <li>{value}</li>
+        <li
+					onClick={onClickList}
+					style={{textDecoration : isCompleted ? "line-through" : "none"}}
+				>
+					{item}
+				</li>
     );
 };
 
-export default toDoItem;
+export default ToDoItem;

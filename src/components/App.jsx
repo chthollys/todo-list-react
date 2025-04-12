@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import ToDoItem from "./ToDoItem";
 // let currentIndex = 0;
 
 function App() {
@@ -46,11 +46,11 @@ function App() {
   // useEffect(() => {
   //   console.log(inputValue);
   // }, [inputValue])
-  
+
   // useEffect(() => {
   //   console.log(inputList);
   // }, [inputList])
-  
+
   // useEffect(() => {
   //   console.log(listHTML);
   // }, [listHTML])
@@ -74,13 +74,13 @@ function App() {
       <div>
         <ul>
           {inputList.map((value, index) => (
-            <li key={index}>{value}</li>
+            <ToDoItem key={index} item={value} />
           ))}
-          {inputValue && <li className="preview">{inputValue}</li>}
+          {inputValue && <ToDoItem item={inputValue} />}
         </ul>
       </div>
     </div>
   );
-}
+};
 
 export default App;
