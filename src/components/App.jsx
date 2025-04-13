@@ -15,8 +15,8 @@ function App() {
   //     return [
   //       ...prevList.slice(0, currentIndex),
   //       value,
-  //     ] 
-  //   });    
+  //     ]
+  //   });
   // };
 
   // const onFormSubmit = (e) => {
@@ -42,6 +42,15 @@ function App() {
     setInputList((prevList) => [...prevList, inputValue]);
     setInputValue("");
   };
+
+  const deleteItem = (id) => {
+    // console.log(id)
+    setInputList((prev) => {
+      return prev.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
 
   // useEffect(() => {
   //   console.log(inputValue);
@@ -74,7 +83,7 @@ function App() {
       <div>
         <ul>
           {inputList.map((value, index) => (
-            <ToDoItem key={index} item={value} />
+            <ToDoItem key={index} id={index} item={value} onCheck={deleteItem}/>
           ))}
           {inputValue && <ToDoItem item={inputValue} />}
         </ul>

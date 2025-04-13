@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 
-function ToDoItem ( { item } ) {
-	const [isCompleted, setIsCompleted] = useState(false);
-	const onClickList = () => {
-		setIsCompleted((prev) => !prev);
-	}
-    return (
-        <li
-					onClick={onClickList}
-					style={{textDecoration : isCompleted ? "line-through" : "none"}}
-				>
-					{item}
-				</li>
-    );
+function ToDoItem ( { id, item, onCheck } ) {
+	return (
+		<li
+			onClick={() => {
+				onCheck(id)
+			}}
+		>
+			{item}
+		</li>
+	);
 };
 
 export default ToDoItem;
