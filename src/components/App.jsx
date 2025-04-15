@@ -13,10 +13,25 @@ function App() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    setInputList((prevList) => {
+      return prevList.filter((item) => item.checked == false)
+    })
     if (inputValue.trim() === "") return;
-    setInputList((prevList) => [...prevList, inputValue]);
+    setInputList((prevList) => [...prevList, {text: inputValue, checked: false}]);
     setInputValue("");
   };
+
+  const markDeleteItem = (id) => {
+    setInputList((prevList) =>
+      prevList.map((item, index) =>
+        index === id ? { ...item, checked: !item.checked } : item
+      )
+    );
+  };
+
+  useEffect(() => {
+    console.log(inputList);
+  }, [inputList])
 
   return (
     <div className="container">
@@ -26,8 +41,8 @@ function App() {
       <InputArea onFormSubmit={onFormSubmit} onChangeInput={onChangeInput} inputValue={inputValue}/>
       <div>
         <ul>
-          {inputList.map((value, index) => (
-            <ToDoItem key={index} item={value} included={true} />
+          {inputList.map((item, index) => (
+            <ToDoItem key={index} id={index} item={item.text} included={true} onCheck={markDeleteItem} checked={item.checked}/>
           ))}
           {inputValue && <ToDoItem included={false} item={inputValue} />}
         </ul>

@@ -10,7 +10,7 @@ function InputArea({ onFormSubmit, onChangeInput, inputValue }) {
         value={inputValue}
       />
       <button type="submit">
-        <span>Add</span>
+        <span>Save</span>
       </button>
     </form>
   )
