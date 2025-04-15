@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
-function ToDoItem ( { id, item, onCheck } ) {
+function ToDoItem ( { id, item, onCheck, included } ) {
+	const errorMessage = (mess) => {
+		alert(mess);
+	}
+
 	return (
 		<li
-			onClick={() => {
-				onCheck(id)
-			}}
+			onClick={included ? () => onCheck(id) : () => errorMessage("Please complete the input process")}
 		>
 			{item}
 		</li>
